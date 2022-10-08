@@ -27,7 +27,7 @@ public class OrderServiceTest {
         memberService.join(member);
 
         Order order1 = orderService.createOrder(memberId, "itemA", 20000);
-        Assertions.assertThat(order1.getDiscountPrice()).isEqualTo(1000);
+        Assertions.assertThat(order1.getDiscountPrice()).isEqualTo(2000);
     }
 
 //    @Test // 예외 발생
