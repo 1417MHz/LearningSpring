@@ -1,6 +1,10 @@
 package hello.core.member;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 // 멤버 서비스 구현체
+@Component
 public class MemberServiceImpl implements MemberService {
 
     // 의존관계가 인터페이스 뿐만 아니라 구현체를 의존하고 있음(추상화와 구현체 둘 다)
@@ -9,6 +13,7 @@ public class MemberServiceImpl implements MemberService {
     private final MemberRepository memberRepository;
 
     // 해결을 위해 의존관계를 외부에서 주입(구현체가 아닌 추상화에만 집중)
+    @Autowired
     public MemberServiceImpl(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
