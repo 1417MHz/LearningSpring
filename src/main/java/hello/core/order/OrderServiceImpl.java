@@ -6,11 +6,14 @@ import hello.core.discount.RateDiscountPolicy;
 import hello.core.member.Member;
 import hello.core.member.MemberRepository;
 import hello.core.member.MemoryMemberRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 // 주문 서비스 인터페이스 구현체
 @Component
+@RequiredArgsConstructor // Lombok
 public class OrderServiceImpl implements OrderService {
 
     // 새로운 할인 정책을 적용함으로서 OCP 위반(서비스 계층의 코드는 변경 되어선 안 된다!)
@@ -23,11 +26,11 @@ public class OrderServiceImpl implements OrderService {
     private final DiscountPolicy discountPolicy;
 
     // 추상화에 의존
-    @Autowired
-    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
-        this.memberRepository = memberRepository;
-        this.discountPolicy = discountPolicy;
-    }
+//    @Autowired
+//    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+//        this.memberRepository = memberRepository;
+//        this.discountPolicy = discountPolicy;
+//    } // Lombok이 final이 적혀있는 필드를 이용해 알아서 생성자 코드를 만들어줌
 
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {
